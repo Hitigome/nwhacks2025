@@ -1,9 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Textbox from "/components/textbox.jsx";
 
 export default function Home() {
   return (
     <div className={styles.page}>
+      <Textbox />
       <main className={styles.main}>
         <Image
           className={styles.logo}
@@ -89,6 +91,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+       
       </footer>
     </div>
   );
