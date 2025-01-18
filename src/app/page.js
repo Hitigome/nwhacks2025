@@ -5,7 +5,6 @@ import Textbox from "/components/textbox.jsx";
 export default function Home() {
   return (
     <div className={styles.page}>
-      <Textbox />
       <main className={styles.main}>
         <Image
           className={styles.logo}
