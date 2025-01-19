@@ -17,14 +17,7 @@ export async function POST(req, res) {
         const data = await req.json()
 
         // Define a prompt varibale
-        let prompt;
-        if (data.operation === "summarize") {
-          prompt = `Can you provide a comprehensive summary of the given text? The summary should cover all the key points and main ideas presented in the original text, while also condensing the information into a concise and easy-to-understand format. Please ensure that the summary includes relevant details and examples that support the main ideas, while avoiding any unnecessary information or repetition. The length of the summary should be appropriate for the length and complexity of the original text, providing a clear and accurate overview without omitting any important information. This is the text: ${data.body}`;
-        } else if (data.operation === "flashcards") {
-          prompt = `Please create flashcards from the following text: ${data.body}`;
-        } else {
-          return NextResponse.json({ error: "Invalid operation type." }, { status: 400 });
-        }
+        const prompt = `Can you provide a comprehensive summary of the given text? The summary should cover all the key points and main ideas presented in the original text, while also condensing the information into a concise and easy-to-understand format. Please ensure that the summary includes relevant details and examples that support the main ideas, while avoiding any unnecessary information or repetition. The length of the summary should be appropriate for the length and complexity of the original text, providing a clear and accurate overview without omitting any important information. If a question is asked, summarize the question. Under no circumstances do you answer questions. This is the text: ${data.body}`;
 
         // Pass the prompt to the model and retrieve the output
         const result = await model.generateContent(prompt)
