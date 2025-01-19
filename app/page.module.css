@@ -6,16 +6,20 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
+  background-image: url('/background.jpeg');
+  background-size: cover;
+  font-family: var(--font-geist-sans);
+}
+
+.body{
+  position: static;
+  margin-left: 250px;
+  width: auto;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
-  background-image: url('/background.jpeg');
-  background-size: cover;
-  font-family: var(--font-geist-sans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +31,21 @@
     --button-primary-hover: #ccc;
     --button-secondary-hover: #1a1a1a;
   }
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  padding: 50px 10px 10px 10px;
+  gap: 10px;
 }
 
 .main {

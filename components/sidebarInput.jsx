@@ -1,8 +1,12 @@
+import styles from './sidebar.module.css'
+
 const SidebarInput = ({newSubject, setNewSubject, addSubject}) => {
     return(
-        <div className="subject-input">
-            <input type="text" value={newSubject} onChange={(e) => setNewSubject(e.target.value)} placeholder="enter new subject"/>
-            <button onClick={addSubject}>Add</button>
+        <div>
+            <input className={styles.subjectInput} type="text" value={newSubject} onChange={(e) => setNewSubject(e.target.value)} placeholder="enter new subject"/>
+            <button className={styles.addButton} onClick={addSubject}>
+                <img src="/add.svg" height={15} width={15} alt="add button"/>
+            </button>
         </div>
     );
 }
