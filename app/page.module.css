@@ -6,10 +6,26 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
   position: relative;
-  background-image: url('/background.jpeg');
   background-size: cover;
+  transition: background-image 0.5s ease;
   font-family: var(--font-geist-sans); 
   overflow: hidden;
+}
+
+.backgroundButtons{
+  border: none;
+}
+
+.bg1{
+  background-image: url('/background.jpeg');
+}
+
+.bg2{
+  background-image: url('/background1.jpg');
+}
+
+.bg3{
+  background-image: url('/background2.jpg');
 }
 
 .body{
