@@ -1,5 +1,8 @@
 // pages/api/chatgpt.js
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '../../../env.local' });
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
