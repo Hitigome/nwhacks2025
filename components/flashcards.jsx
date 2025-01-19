@@ -2,9 +2,44 @@
 import { useState } from 'react';
 
 
-export default function FlashcardsApp() {
+export default function FlashcardsApp({ inputText, setInputText }) {
     const [flashcards, setFlashcards] = useState({});
     const [bulkText, setBulkText] = useState("");
+    const [output, setOutput] = useState("");
+
+
+    const generateFlashcards = async () => {
+        try {
+            const response = await fetch('/api/flashcards', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: inputText })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                setOutput(errorText);
+                return;
+            }
+
+            console.log('API response:', data);
+
+            if(response.ok) {
+                setOutput(data.output);
+            } else {
+                setOutput(data.error);
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            setOutput('Error: ' + error.message);
+        }
+    };
 
     const saveFlashcards = () => {
         const blob = new Blob([JSON.stringify(flashcards, null, 4)], { type: 'application/json' });
@@ -40,18 +75,21 @@ export default function FlashcardsApp() {
     const bulkAddFlashcards = () => {
         const lines = bulkText.split('\n');
         const newFlashcards = { ...flashcards };
-
+    
         lines.forEach((line) => {
             line = line.trim();
+            console.log(`Processing line: ${line}`); // Debugging statement
             if (line.startsWith("+") && line.endsWith("+")) {
                 const content = line.slice(1, -1).trim(); // Remove leading + and trailing +
+                console.log(`Content after trimming: ${content}`); // Debugging statement
                 if (content.includes(" | ")) {
                     const [question, answer] = content.split(" | ").map((part) => part.trim());
+                    console.log(`Parsed question: ${question}, answer: ${answer}`); // Debugging statement
                     newFlashcards[question] = { question, answer };
                 }
             }
         });
-
+    
         setFlashcards(newFlashcards);
         setBulkText("");
         alert('Bulk flashcards added successfully!');
@@ -73,8 +111,14 @@ export default function FlashcardsApp() {
             <h1>Flashcards App</h1>
             <div>
                 <h2>Add Flashcard</h2>
+                <textarea
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    placeholder="Enter text to summarize"
+                />
                 <input type="text" placeholder="Question" id="question" />
                 <input type="text" placeholder="Answer" id="answer" />
+                <button onClick={generateFlashcards}>Generate Flashcards</button>
                 <button onClick={() => {
                     const question = document.getElementById('question').value;
                     const answer = document.getElementById('answer').value;
@@ -88,7 +132,7 @@ export default function FlashcardsApp() {
             <div>
                 <h2>Bulk Add Flashcards</h2>
                 <textarea
-                    value={bulkText}
+                    value={output}
                     onChange={(e) => setBulkText(e.target.value)}
                     placeholder="Enter bulk text (e.g., +question | answer+)"></textarea>
                 <button onClick={bulkAddFlashcards}>Bulk Add</button>

@@ -1,9 +1,8 @@
 import styles from './textbox.module.css'
 import React, {useState} from 'react';
 
-function Textbox() {
+function Textbox({inputText, setInputText }) {
     const [output, setOutput] = useState('');
-    const [inputText, setInputText] = useState("");
 
     const generateText = async () => {
         try {
@@ -26,7 +25,7 @@ function Textbox() {
         } catch(error) {
           console.error('Error:', error)
         }
-      };
+    };
 
     return(
         <div className={styles.textbox}>
