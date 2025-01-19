@@ -28,13 +28,15 @@ const Home = () => {
 
   return (
     <div className={styles.page}>
+      <div className={styles.sidebar}>
+        <h2>Subjects</h2>
+        <SidebarInput newSubject={newSubject} setNewSubject={setNewSubject} addSubject={addSubject}/>
+        <Sidebar subjects={subjects} removeSubject={removeSubject}/>
+      </div>
+      <div className={styles.body}>
       <Header/>
       <Textbox/>
-
-      <h2>Sidebar</h2>
-      <SidebarInput newSubject={newSubject} setNewSubject={setNewSubject} addSubject={addSubject}/>
-      <Sidebar subjects={subjects} removeSubject={removeSubject}/>
-
+      </div>
     </div>
   );
 }

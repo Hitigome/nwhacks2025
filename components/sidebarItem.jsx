@@ -1,6 +1,6 @@
 const SidebarItem = ({ id, name, removeSubject}) => {
     return (
-        <li style={{ color: 'white' }}>
+        <li style={{marginBottom: '5px'}}>
             {name}
             <img 
                 src="/x.svg"
