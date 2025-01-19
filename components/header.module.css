@@ -1,8 +1,7 @@
-.image{
-    border-radius: 100px;
+.header{
+    width: 100%;
 }
 
-.title{
-    font-size: 30px;
-    text-align: center;
+.image{
+    border-radius: 100px;
 }

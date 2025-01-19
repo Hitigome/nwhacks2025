@@ -13,6 +13,8 @@
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
+  background-image: url('/background.jpeg');
+  background-size: cover;
   font-family: var(--font-geist-sans);
 }
 
