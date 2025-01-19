@@ -30,7 +30,6 @@ function Textbox() {
 
     return(
         <div className={styles.textbox}>
-            <p className={styles.p}>Enter your notes here:</p>
             <textarea
                 className={styles.input}
                 style={{ height: '400px' }}
