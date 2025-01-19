@@ -16,7 +16,7 @@ const Home = () => {
     {id: uuidv4(), name: "History"},
   ]);
   const [newSubject, setNewSubject] = useState("");
-  
+
   const addSubject = () => {
     setSubjects([...subjects, {id: uuidv4(), name: newSubject}])
     setNewSubject("");
